@@ -44,7 +44,7 @@ Todas as dependências estão em `requirements.txt`, com versões fixas para que
 | **matplotlib** | Gráficos: pesos por dia, Gantt das janelas temporais, curvas de custo por iteração. |
 | **seaborn** | Gráficos estatísticos sobre o matplotlib, como o heatmap das distâncias e as distribuições. |
 | **folium** | Mapas interativos com produtores, centro de recolha e locais de entrega; mais tarde, as rotas. |
-| **python-constraint** | Biblioteca do CSP (`from constraint import Problem`): variáveis, domínios e restrições. |
+| **python-constraint2** | Biblioteca do CSP ([github.com/python-constraint/python-constraint](https://github.com/python-constraint/python-constraint)). Importa-se com `from constraint import Problem`: variáveis, domínios, restrições e solvers (backtracking, min-conflicts). Substitui o antigo `python-constraint`, que já não é atualizado. |
 | **jupyter** | Ambiente para abrir e correr os notebooks `.ipynb`. |
 | **ipykernel** | Kernel Python que executa as células do notebook (também usado pelo VS Code). |
 
