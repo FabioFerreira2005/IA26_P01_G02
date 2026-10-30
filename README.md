@@ -24,13 +24,13 @@ Desenvolver um agente inteligente que encontre rotas de recolha (produtores) e e
 ## Estrutura
 
 ```
-├── 01_eda_tiny.ipynb               # Introdução e análise exploratória dos dados
+├── 01_eda_small.ipynb              # Introdução e análise exploratória (EDA) do conjunto small
 ├── requirements.txt                # Dependências (versões fixas)
-├── readme.txt                      # Link do repositório (exigido na entrega)
+├── Auxiliares_dev_EDA/             # Material de apoio do desenvolvimento (versões anteriores e ideias)
 └── docs/
     ├── IA91_Project01_Guide.pdf    # Enunciado
     ├── data_tiny/                  # Conjunto de dados pequeno
-    └── data_small_30_31oct2026/    # Conjunto de dados maior (+ rules.csv)
+    └── data_small_30_31oct2026/    # Conjunto de dados maior
 ```
 
 ## Dependências
@@ -55,4 +55,4 @@ pip install -r requirements.txt
 jupyter notebook
 ```
 
-Abrir `01_eda_tiny.ipynb` e executar todas as células.
+Abrir `01_eda_small.ipynb` e executar todas as células. Todo o código está no notebook.
