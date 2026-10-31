@@ -700,7 +700,7 @@ def h_mais_distante(state: State, problem: Problem, itens_objetivo: Set[int]) ->
 
 
 # =====================================================================
-# 4. TESTES COM ROTAS ESCRITAS À MÃO (HAND-WRITTEN ROUTES) - para testar a função verificar_viabilidade
+# 4. TESTES MANUAIS - para testar a função verificar_viabilidade
 # =====================================================================
 
 def executar_testes_manuais(pasta: str = "docs/data_small_30_31oct2026/"):
