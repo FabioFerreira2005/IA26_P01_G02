@@ -37,7 +37,7 @@ Todos os algoritmos minimizam a distância percorrida em quilómetros:
 
 As heurísticas usadas pelo Greedy e pelo A* são:
 
-- **H1 — Pedido mais caro (`h1_pedido_mais_caro`):** calcula o custo mínimo obrigatório que falta para cada item pendente e usa o maior desses custos.
+- **H1 — Pedido mais caro**: calcula o limite inferior da distância obrigatória que ainda falta percorrer para cada item pendente e utiliza o maior desses valores como estimativa.
 - **H2 — Árvore Geradora Mínima (`h2_mst`):** calcula uma estimativa para ligar as paragens ainda necessárias, usando uma MST construída com Prim.
 
 A duração, os tempos de serviço, as janelas e a permanência no armazém são usados para verificar a viabilidade. O objetivo de otimização é a distância, não o tempo total.
@@ -58,13 +58,14 @@ A função `comparar_algoritmos_frota(...)` repete este processo para os cinco c
 
 A distribuição de encomendas pode ter muitas combinações. Com 25 encomendas que possam ser atribuídas a qualquer veículo, existem até `2^25 - 2` distribuições em que ambos os veículos recebem pelo menos uma encomenda. Por isso:
 
-- `max_particoes=None` explora todas as distribuições viáveis;
+- `max_particoes=None` explora todas as distribuições admissíveis segundo as restrições de capacidade e as atribuições fixas. A viabilidade das rotas é verificada posteriormente.
 - um valor como `max_particoes=128` limita a análise às primeiras 128 distribuições geradas;
 - `max_nos_expandidos_por_veiculo` limita a pesquisa da rota de cada veículo.
 
 Quando um limite é atingido, o resultado é a **melhor solução encontrada entre as distribuições avaliadas**, não uma prova de ótimo global. A função só assinala `otimo_global_comprovado=True` quando todas as distribuições foram avaliadas, as pesquisas terminaram sem limites internos e foi usado UCS.
 
 O planeamento recebe um único instante de partida e pode incluir itens com janelas em vários dias. As próprias janelas temporais e a regra das 24 horas são verificadas. Não existe, neste modelo, uma restrição adicional de horário de turno ou pausa diária dos motoristas.
+Mas esta funcionalidade não cria automaticamente planos diários independentes, nem obriga o veículo a terminar cada dia no armazém. O planeamento pode abranger vários dias numa única sequência de operações. A separação das rotas diárias e o encadeamento explícito dos dias 30 e 31 ficam a cargo da integração.
 
 ## 6. Executar
 
@@ -83,9 +84,16 @@ from datetime import datetime
 from model import Problem
 from pesquisa import otimizar_frota, tabela_resultado_frota
 
+dia_inicio = date.fromisoformat(
+    str(problem.regras["start_date"])
+)
+
 problem = Problem("docs/data_tiny")
 itens = set(problem.pedidos)  # todos os itens / todas as encomendas
-hora_partida = min(req.availability_start for req in problem.pedidos.values())
+hora_partida = datetime.combine(
+    dia_inicio,
+    time(7, 0)
+)
 
 resultado = otimizar_frota(
     problem,
