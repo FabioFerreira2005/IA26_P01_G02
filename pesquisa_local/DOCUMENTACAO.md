@@ -44,7 +44,9 @@ Fábio (pesquisa informada) ──► Greedy: rotas iniciais ──► ALEXANDRE
 **Ótimo local:** uma solução sem nenhum vizinho melhor, mas que não é necessariamente a melhor de todas (o ótimo global). É o grande defeito do Hill-Climbing.
 
 **Duas estratégias:**
+
 - **Melhor vizinho** (*steepest ascent*): avalia todos os vizinhos e escolhe o melhor. Dá passos maiores, mas cada iteração é mais cara.
+
 - **Primeira melhoria** (*first improvement*): percorre os vizinhos por ordem aleatória e aceita o primeiro que melhora. Faz mais iterações, mas cada uma é mais barata.
 
 **Simulated Annealing (extra):** é como o Hill-Climbing, mas às vezes aceita vizinhos piores, com probabilidade `exp(−Δ/T)`. A "temperatura" T desce com o tempo: no início aceita muitas pioras, no fim quase nenhuma. Serve para escapar a ótimos locais.
@@ -54,6 +56,7 @@ Fábio (pesquisa informada) ──► Greedy: rotas iniciais ──► ALEXANDRE
 ## 4. Como está implementado (`local.py`)
 
 ### 4.1 Representação: sequência de visitas
+
 Uma rota é uma lista de objetos `Visita(tipo, local, itens)`:
 
 | Símbolo | Tipo | Significado |
