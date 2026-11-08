@@ -1,10 +1,8 @@
 # IA26_P01_G02 - dependencias do projeto (versoes fixas)
-# Instalar com: pip install -r requirements.txt
+# Instalar com: py -m pip install -r requirements.txt
 pandas==3.1.0
 numpy==2.5.4
 matplotlib==3.11.2
-seaborn==0.13.2
-folium==0.20.0
 python-constraint2==2.8.0
 jupyter==1.1.1
 ipykernel==7.4.0
